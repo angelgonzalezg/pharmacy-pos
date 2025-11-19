@@ -1,4 +1,4 @@
-package org.example;
+package mx.angelgo.pharmacypos;
 
 public class Main {
     public static void main(String[] args) {
