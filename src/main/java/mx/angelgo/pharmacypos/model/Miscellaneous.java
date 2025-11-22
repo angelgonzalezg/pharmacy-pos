@@ -1,11 +1,12 @@
 package mx.angelgo.pharmacypos.model;
 
-import java.time.LocalDate;
-
 public class Miscellaneous extends Product {
 
-    public Miscellaneous(long id, String name, String brand, double price, boolean status, LocalDate expiryDate) {
+    public Miscellaneous(long id, String name, String brand, double price, boolean status, String expiryDate) {
         super(id, name, brand, price, status, expiryDate, "MISCELANEO");
+    }
+
+    public Miscellaneous(int id, String name, double price, int status, String brand, String expiry) {
     }
 
     @Override

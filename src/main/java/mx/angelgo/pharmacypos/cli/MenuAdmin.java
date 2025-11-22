@@ -34,11 +34,10 @@ public class MenuAdmin {
             int op = Integer.parseInt(scan.nextLine());
 
             switch(op){
-                case 1 -> new MenuProducts(pDao).showProducts();
+                case 1 -> new MenuProducts(pDao).start();
                 case 2 -> new MenuSales(sDao, pDao, user.getId());
                 case 3 -> new MenuUserProfiles();
                 case 0 -> {
-                    System.out.println("Finalizando PoS...");
                     return;
                 }
             }
