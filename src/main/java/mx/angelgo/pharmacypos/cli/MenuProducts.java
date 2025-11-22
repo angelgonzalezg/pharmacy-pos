@@ -1,7 +1,6 @@
 package mx.angelgo.pharmacypos.cli;
 
 import mx.angelgo.pharmacypos.dao.ProductDao;
-import mx.angelgo.pharmacypos.model.Product;
 
 import java.util.Scanner;
 
@@ -62,11 +61,11 @@ public class MenuProducts {
         System.out.println("DBG Caducidad es: " + expiry);
 
         System.out.print("Activo? (1 si, 0 no): ");
-        int status = scan.nextInt();
+        boolean status = scan.nextInt() == 1;
         scan.nextLine();
 
         boolean isAntibiotic = false;
-        Integer maxRecipes = null;
+        int maxRecipes = 0;
         String medType = null;
         Boolean isNatural = null;
 

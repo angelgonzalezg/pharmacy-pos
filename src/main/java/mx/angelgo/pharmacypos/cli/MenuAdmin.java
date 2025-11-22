@@ -40,6 +40,7 @@ public class MenuAdmin {
                 case 0 -> {
                     return;
                 }
+                default -> System.out.println("Introduzca un valor valido!");
             }
         }
     }

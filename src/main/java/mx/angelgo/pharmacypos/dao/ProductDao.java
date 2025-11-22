@@ -15,11 +15,11 @@ public class ProductDao {
             int prodType,
             String name,
             double price,
-            int status,
+            boolean status,
             String brand,
             String expiry,
             boolean isAntibiotic,
-            Integer maxQtyPerRecipe,
+            int maxQtyPerRecipe,
             String medType,
             Boolean isNatural
     ) throws Exception {
@@ -29,23 +29,15 @@ public class ProductDao {
         Product p;
         switch (prodType) {
             case 1:
-                p = new Medicine(
-                        0, name, price, status, brand, expiry,
-                        isAntibiotic, maxQtyPerRecipe, medType
-                );
+                p = new Medicine( 0, name, brand, price, status, expiry, isAntibiotic, maxQtyPerRecipe, medType);
                 break;
 
             case 2:
-                p = new Candy(
-                        0, name, price, status, brand, expiry,
-                        isNatural
-                );
+                p = new Candy(0, name, brand, price, status, expiry, isNatural);
                 break;
 
             case 3:
-                p = new Miscellaneous(
-                        0, name, price, status, brand, expiry
-                );
+                p = new Miscellaneous(0, name, brand, price, status, expiry);
                 break;
 
             default:
@@ -70,7 +62,7 @@ public class ProductDao {
             med_type,
             is_natural
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?::product_type, ?, ?, ?::medicine_type, ?)
     """;
 
         try (PreparedStatement ps = db_conn.prepareStatement(sql)) {
@@ -124,18 +116,26 @@ public class ProductDao {
 
     public List<Product> findAll() throws Exception {
         List<Product> list = new ArrayList<>();
-        try(Statement st = db_conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM products")){
-            while(rs.next()) list.add(mapRow(rs));
+
+        try (Statement st = db_conn.createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM products ORDER BY id")) {
+
+            while (rs.next()) {
+                list.add(mapRow(rs));
+            }
         }
+
         return list;
     }
 
+
     private Product mapRow(ResultSet rs) throws Exception {
         String prodType = rs.getString("product_type");
-        String expDate = rs.getString("expiry_date");
 
-        return switch(prodType){
+        String expDate = rs.getString("expiration");
+
+        return switch (prodType) {
+
             case "MEDICAMENTO" ->
                     new Medicine(
                             rs.getLong("id"),
@@ -171,5 +171,4 @@ public class ProductDao {
                     );
         };
     }
-
 }

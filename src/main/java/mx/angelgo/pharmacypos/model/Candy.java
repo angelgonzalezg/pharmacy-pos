@@ -9,9 +9,6 @@ public class Candy extends Product {
         this.isNatural = isNatural;
     }
 
-    public Candy(int id, String name, double price, int status, String brand, String expiry, Boolean isNatural) {
-    }
-
     @Override
     public String getDetails() {
         return "Natural: " + isNatural;

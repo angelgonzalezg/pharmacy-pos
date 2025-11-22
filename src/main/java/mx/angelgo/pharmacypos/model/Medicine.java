@@ -8,14 +8,10 @@ public class Medicine extends Product {
     private String medicineType;
 
     public Medicine(long id, String name, String brand, double price, boolean status, String expiryDate, boolean isAntibiotic, int maxQtyPerRecipe, String medicineType) {
-
         super(id, name, brand, price, status, expiryDate, "MEDICAMENTO");
         this.isAntibiotic = isAntibiotic;
         this.maxQtyPerRecipe = maxQtyPerRecipe;
         this.medicineType = medicineType;
-    }
-
-    public Medicine(int id, String name, double price, int status, String brand, String expiry, boolean isAntibiotic, int maxQtyPerRecipe, String medType) {
     }
 
     @Override
