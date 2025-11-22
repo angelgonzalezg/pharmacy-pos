@@ -24,8 +24,6 @@ public class ProductDao {
             Boolean isNatural
     ) throws Exception {
 
-        System.out.println("DBG Caducidad  en DAO es: " + expiry);
-
         Product p;
         switch (prodType) {
             case 1:
@@ -72,7 +70,6 @@ public class ProductDao {
             ps.setString(2, p.getBrand());
             ps.setDouble(3, p.getPrice());
             ps.setBoolean(4, p.getStatus());
-            System.out.println("DEBUG expiration received: [" + p.getExpiryDate() + "]");
             ps.setDate(5, java.sql.Date.valueOf(p.getExpiryDate()));
 
             // Tipo (1=Medicamento, 2=Golosina, 3=Miscelaneo)
@@ -86,9 +83,9 @@ public class ProductDao {
                 ps.setNull(10, java.sql.Types.BOOLEAN);
             }
             else if (p instanceof Candy c) {
-                ps.setNull(7, java.sql.Types.BOOLEAN);  // antibiotico
-                ps.setNull(8, java.sql.Types.INTEGER);  // max receta
-                ps.setNull(9, java.sql.Types.VARCHAR);  // tipo medicamento
+                ps.setNull(7, java.sql.Types.BOOLEAN);
+                ps.setNull(8, java.sql.Types.INTEGER);
+                ps.setNull(9, java.sql.Types.VARCHAR);
                 ps.setBoolean(10, c.getIsNatural());
             }
             else if (p instanceof Miscellaneous m) {

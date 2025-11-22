@@ -32,14 +32,11 @@ public class Main {
 
         System.out.print("\n=== PHARMACY ANGELGO ===");
 
-//        System.out.print("Email: ");
-//        String email = scan.nextLine();
-//
-//        System.out.print("Pw: ");
-//        String passwd = scan.nextLine();
+        System.out.print("\nEmail: ");
+        String email = scan.nextLine();
 
-        String email = "admin@admin.com";
-        String passwd = "passadmin";
+        System.out.print("Pw: ");
+        String passwd = scan.nextLine();
 
         User user = userDao.login(email, passwd);
 
