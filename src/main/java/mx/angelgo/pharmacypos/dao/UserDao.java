@@ -24,7 +24,10 @@ public class UserDao {
                             rs.getString("name"),
                             rs.getString("email"),
                             rs.getString("password_hash"),
-                            rs.getString("role")
+                            rs.getString("role"),
+                            rs.getString("no_employee"),
+                            rs.getString("access_code"),
+                            rs.getString("secret_word_hash")
                     );
                 }
             }
@@ -33,7 +36,7 @@ public class UserDao {
             // Print error message
             System.err.println("Error in User login: " + e.getMessage());
 
-            //
+            // Wrap it in a runtime exception
             throw  new RuntimeException("Database error during User login");
         }
         // User not found

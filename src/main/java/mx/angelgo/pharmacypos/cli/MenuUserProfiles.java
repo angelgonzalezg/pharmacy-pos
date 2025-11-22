@@ -1,4 +1,4 @@
 package mx.angelgo.pharmacypos.cli;
 
-public class MenuUserRegistration {
+public class MenuUserProfiles {
 }

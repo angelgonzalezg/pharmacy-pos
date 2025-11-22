@@ -1,5 +1,10 @@
 package mx.angelgo.pharmacypos;
 
+import mx.angelgo.pharmacypos.cli.MenuAdmin;
+import mx.angelgo.pharmacypos.cli.MenuCustomer;
+import mx.angelgo.pharmacypos.cli.MenuVendor;
+import mx.angelgo.pharmacypos.dao.ProductDao;
+import mx.angelgo.pharmacypos.dao.SalesDao;
 import mx.angelgo.pharmacypos.util.DBConnection;
 import mx.angelgo.pharmacypos.util.Console;
 import mx.angelgo.pharmacypos.dao.UserDao;
@@ -18,7 +23,10 @@ public class Main {
                 "1234"
         );
 
-        UserDao uDao = new UserDao(db_conn);
+        UserDao userDao = new UserDao(db_conn);
+        ProductDao productDao = new ProductDao(db_conn);
+        SalesDao salesDao = new SalesDao(db_conn);
+
 
         Scanner scan = new Scanner(System.in);
 
@@ -30,20 +38,20 @@ public class Main {
 //        System.out.print("Pw: ");
 //        String passwd = scan.nextLine();
 
-        String email = "angel.glez.g@gmail.com";
-        String passwd = "1234";
+        String email = "admin@admin.com";
+        String passwd = "passadmin";
 
-        User u = uDao.login(email, passwd);
+        User user = userDao.login(email, passwd);
 
-        if (u == null) {
-            System.out.println("Credenciales incorrectas!");
+        if (user == null) {
+            System.out.println("\nCredenciales incorrectas!");
             return;
+        } else {
+            switch(user.getRole()) {
+                case "ADMIN" -> new MenuAdmin(user, productDao, salesDao).start();
+                case "VENDEDOR" -> new MenuVendor(user);
+                case "CLIENTE" -> new MenuCustomer(user);
+            }
         }
-
-        Console.clear();
-
-        System.out.println("Usuario encontrado");
-
-
     }
 }

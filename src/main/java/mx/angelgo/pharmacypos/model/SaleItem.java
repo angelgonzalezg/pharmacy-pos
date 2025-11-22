@@ -1,11 +1,11 @@
 package mx.angelgo.pharmacypos.model;
 
-public class SellItem {
+public class SaleItem {
     private long productId;
     private int qty;
     private double price;
 
-    public SellItem(long productId, int qty, double price) {
+    public SaleItem(long productId, int qty, double price) {
         this.productId = productId;
         this.qty = qty;
         this.price = price;
